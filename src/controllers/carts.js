@@ -53,7 +53,7 @@ const cleanCart = async(req, res) => {
         await CartModel.findByIdAndDelete(user.cart);
         user.cart = undefined;
         await user.save();
-        return res.status(200).json({message: "cart cleaned"})
+        return res.status(200).json({message: "cart emptied"})
     } catch (error) {
         return res.status(500).json({message: error.message})
     }

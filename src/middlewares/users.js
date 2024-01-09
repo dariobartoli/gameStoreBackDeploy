@@ -17,7 +17,7 @@ const dataValidation = (req, res, next) => {
             .required(),
         
         password: Joi.string()
-            .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+            .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,16}$'))
             .required(),
         email: Joi.string()
             .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
