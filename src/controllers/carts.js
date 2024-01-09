@@ -50,7 +50,7 @@ const cleanCart = async(req, res) => {
         if (!user.cart) {
             return res.status(400).json({message: "you don't have anything in your cart"})
         }
-        await CartModel.findByIdAndRemove(user.cart);
+        await CartModel.findByIdAndDelete(user.cart);
         user.cart = undefined;
         await user.save();
         return res.status(200).json({message: "cart cleaned"})
@@ -125,7 +125,7 @@ const purchase = async(req,res) => {
         for (const item of cart.gamesInCart) {
             user.games.push(item.game)
         }
-        await CartModel.findByIdAndRemove(user.cart);
+        await CartModel.findByIdAndDelete(user.cart);
         user.cart = undefined;
         await user.save();
         return res.status(200).json({message: "purchase successful", total})
